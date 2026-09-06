@@ -1,0 +1,36 @@
+module(
+    name = "daphne",
+    version = "0.1.0",
+)
+
+bazel_dep(name = "rules_cc", version = "0.2.17")
+bazel_dep(name = "rules_python", version = "1.8.0")
+bazel_dep(name = "nlohmann_json", version = "3.12.0.bcr.2")
+bazel_dep(name = "abseil-cpp", version = "20250814.1")
+
+# Hedron's Compile Commands Extractor for clangd / IDE navigation
+bazel_dep(name = "hedron_compile_commands", dev_dependency = True)
+git_override(
+    module_name = "hedron_compile_commands",
+    remote = "https://github.com/hedronvision/bazel-compile-commands-extractor.git",
+    commit = "7fe1eab26d2b8eeb5e1c6a2f38bddb001e3f9696",
+)
+
+git_repository = use_repo_rule("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
+
+git_repository(
+    name = "mio",
+    remote = "https://github.com/vimpunk/mio.git",
+    commit = "8b6b7d878c89e81614d05edca7936de41ccdd2da",
+    build_file_content = """
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+    name = "mio",
+    hdrs = ["single_include/mio/mio.hpp"],
+    includes = ["single_include"],
+    visibility = ["//visibility:public"],
+)
+""",
+)
+

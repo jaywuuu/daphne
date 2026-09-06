@@ -1,0 +1,32 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+
+cc_binary(
+    name = "safetensor_dmp",
+    srcs = ["safetensor_dmp.cpp"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "@abseil-cpp//absl/flags:flag",
+        "@abseil-cpp//absl/flags:parse",
+        "@abseil-cpp//absl/flags:usage",
+        "@mio",
+        "@nlohmann_json//:json",
+    ],
+)
+
+cc_binary(
+    name = "safetensor_loader",
+    srcs = [
+        "safetensor_loader.cpp",
+        "types.h",
+        "weights.cpp",
+        "weights.h",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        "@abseil-cpp//absl/flags:flag",
+        "@abseil-cpp//absl/flags:parse",
+        "@abseil-cpp//absl/flags:usage",
+        "@mio",
+        "@nlohmann_json//:json",
+    ],
+)

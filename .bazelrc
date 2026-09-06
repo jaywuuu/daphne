@@ -1,0 +1,20 @@
+# Common configuration
+common --color=yes
+
+# Automatically enable platform-specific configs (build:windows, build:linux, build:macos)
+build --enable_platform_specific_config
+
+# Windows (MSVC)
+build:windows --cxxopt=/std:c++latest
+build:windows --host_cxxopt=/std:c++latest
+build:windows --cxxopt=/utf-8
+build:windows --host_cxxopt=/utf-8
+build:windows --enable_runfiles
+
+# Linux (GCC / Clang)
+build:linux --cxxopt=-std=c++23
+build:linux --host_cxxopt=-std=c++23
+
+# macOS (Apple Clang)
+build:macos --cxxopt=-std=c++23
+build:macos --host_cxxopt=-std=c++23

@@ -43,6 +43,8 @@
 build/
 Build/
 build-*/
+bazel-*
+
 
 # CMake generated files
 CMakeFiles/
@@ -67,3 +69,6 @@ vcpkg_installed/
 # test output & cache
 Testing/
 .cache/
+
+# weights
+models/weights/
